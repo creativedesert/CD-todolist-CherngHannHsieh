@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>班次查詢</h1>
+    
+    <form>
+        <p>起點站&nbsp;:&nbsp;&nbsp;&nbsp;
+            <select name="起點站" id="ddl">
+                <option value="0" >----</option>
+                <option value="1" >臺北</option>
+                <option value="2" >臺中</option>
+                <option value="3" >高雄</option>
+            </select>
+            &nbsp;&nbsp;終點站:&nbsp;&nbsp;&nbsp;&nbsp;
+            <select name="終點站" id="ddl2"></select> 
+            <button id="btn">查詢</button>
+            <script>
+                $("#ddl").change(function(){
+                    switch(parseInt($("#ddl").val())){//switch(parseInt($(this).val())){
+                        case 0:
+                            $("#ddl2 option").remove();
+                            break;
+                        case 1:
+                            $("#ddl2 option").remove();
+                            var array = ["臺中","高雄"];        //0,1
+                            $.each(array,function(i,val){       //array[i]--val
+                                $("#ddl2").append($("<option value ='" + i + "'>" + val+"</option>"));
+                            });
+                            break;
+                        case 2:
+                            $("#ddl2 option").remove();
+                            var array = ["臺北","高雄"];        //0,1
+                            $.each(array,function(i,val){       
+                                $("#ddl2").append($("<option value ='" + i + "'>" + val+"</option>"));
+                            });
+                            break;
+                        case 3:
+                            $("#ddl2 option").remove();
+                            var array = ["臺北","臺中"];        //0,1
+                            $.each(array,function(i,val){
+                                $("#ddl2").append($("<option value ='" + i + "'>" + val+"</option>"));
+                            });
+                            break;
+                    }
+                });
+
+                $("#btn").click(function(){
+                    if($(ddl).val()==0){
+                        alert("請輸入起始站");
+                    }
+                    if($(ddl).val()==1 && $(ddl2).val()==0){
+                        alert("從臺北到臺中的班次如下:"+"\r"+"統一客運 001");
+                    }
+                    if($(ddl).val()==1 && $(ddl2).val()==1){
+                        alert("從臺北到高雄的班次如下:"+"\r"+"統一客運 002");
+                    }
+                    if($(ddl).val()==2 && $(ddl2).val()==0){
+                        alert("從臺中到臺北的班次如下:"+"\r"+"統一客運 003");
+                    }
+                    if($(ddl).val()==2 && $(ddl2).val()==1){
+                        alert("從臺中到高雄的班次如下:"+"\r"+"統一客運 004");
+                    }
+                    if($(ddl).val()==3 && $(ddl2).val()==0){
+                        alert("從高雄到臺北的班次如下:"+"\r"+"統一客運 005");
+                    }
+                    if($(ddl).val()==3 && $(ddl2).val()==1){
+                        alert("從高雄到臺中的班次如下:"+"\r"+"統一客運 006");
+                    }
+                });
+            </script>
+        </p>
+    </form>    
+</body>
+</html>
